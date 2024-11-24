@@ -132,7 +132,36 @@
                         </p>
                     </li>
                 </ul>
-            </dd>   
+            </dd>
+            <h4>This are tags, associated with forms, but they are not just attributes</h4>
+            <dt>label</dt>
+            <dd>It is used to describe the input field. It is important for accessibility, as it helps screen readers to understand the form
+                <ul>
+                    <li>for: element's id. The element which will receive the information</li>
+                    <li>form: it references the id of the form where it belongs
+                        <p>It is redundant to use it here, but in cases like buttons the attribute makes sense</p>
+                    </li>
+                </ul>
+            </dd> 
+            <dt>input</dt>
+            <dd>It is used to create an input field. It has several types:
+                <ul>
+                    <li>text: a single line text field
+                        <p>When this one is use, is also peer with <i>placeholder</i> that is the text inside de box, to explain again, what is expected there</p>
+                    </li>
+                    <li>password: a single line text field, but the text is hidden</li>
+                    <li>radio: a radio button</li>
+                    <li>checkbox: a checkbox</li>
+                    <li>submit: a submit button</li>
+                    <li>file: a file upload field</li>
+                    <li>hidden: a hidden field</li>
+                    <li>date: a date field</li>
+                    <li>number: a number field</li>
+                </ul>  
+            <p>It also has the <i>required</i> attribute, that makes the field mandatory
+                Or the <i>minlength</i> and <i>maxlength</i> attributes, that limit the number of characters that can be written in the field.
+            </p>    
+            </dd>
         </dl>
 
         <form id="form_one" action="" method="GET">
@@ -142,6 +171,8 @@
             </label>
         </form>
         <button form="form_one" type="submit">Send Info</button>
+    
+    
     </body>
 
 </html>
