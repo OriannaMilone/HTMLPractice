@@ -171,8 +171,51 @@
             </label>
         </form>
         <button form="form_one" type="submit">Send Info</button>
-    
-    
+        
+        <h3>Element Select:</h3>
+        <p> It is used to create a dropdown list. It has two main attributes:
+            <ul>
+                <li>id: its use, is to associated a label, to the form</li>
+                <li>name: it is used to associated the selected value with a specific field of the form when it's send to the server</li>
+            </ul>   
+        </p>
+        <label for="Fruits">Choose a fruit:</label>
+        <select id="Fruits" name="fav_fruit">
+            <option value="strawberry">Strawberry</option>
+            <option value="banana">Banana</option>
+            <option value="grapes">Grapes</option>
+        </select>
+
+        <h3>Anothe elements:</h3>
+        <h4>Content Structure</h4>
+            <p>The next elements, are crucial for designing the page skeleton's/structure. Also, it helps keeping a normalized pattern among resources.</p>
+            <label>This elements are:</label>
+            <br>
+            <dl>
+                <dt>Header: &lt;header&gt;</dt>
+                <dt>Nav: &lt;nav&gt;</dt>
+                <dd>Its purpose is to hold navegation icons, menus, content tabs...</dd>
+                <dt>Section: &lt;section&gt;</dt>
+                <dd>Similar to a div, it defines a block of space to hold other HTML elements</dd>
+                <dt>Article: &lt;article&gt;</dt>
+                <dd>Bears a post, doc, comment...</dd>
+                <dt>Aside: &lt;aside&gt;</dt>
+                <dd>Lateral menu</dd>
+                <dt>Footer: &lt;footer&gt;</dt>
+                <dd>Grasps the authors information, and other items.</dd> 
+            </dl>
+        
+        <h3>Audio & Visual elements</h3>
+        <p>&lt;audio controls src="/media/cc0-audio/t-rex-roar.mp3"&gt;&lt;/audio&gt;
+            &lt;video controls width="250">
+            &lt;source src="/media/cc0-videos/flower.webm" type="video/webm" /&gt;
+            &lt;source src="/media/cc0-videos/flower.mp4" type="video/mp4" /&gt;
+                Download the
+                &lt;a href="/media/cc0-videos/flower.webm"&gt;WEBM&lt;/a&gt; or
+                &lt;a href="/media/cc0-videos/flower.mp4"&gt;MP4&lt;/a&gt; video.
+                &lt;/video&gt;
+        </p>
+        
     </body>
 
 </html>
