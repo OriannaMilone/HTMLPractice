@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Simple Canvas</title>
+        <meta charset="UTF-8">
+        <meta name="description" content="Simple Canvas and how to build it">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Orianna M">
+
+        <link rel="icon" href="./favicon.ico">
+    </head>
+    <body>
+        <header>
+            <h1>Canvas 101</h1>
+        </header>
+        <h3>What's a Canvas?</h3>
+        <p>It is a graphic's container. It's communly pair with javascript code.
+            Which means, that the code will be using two elements: &lt;canvas&gt; and &lt;script&gt;
+
+            It is important to mention that every canvas most have an attribute id, which will be used by the script, to identify where to apply the functionality.
+        </p>
+
+        <canvas id="canvas101" width="800" height="500" style="border:1px solid #093f85; background-color:#f0f8ff"></canvas>
+        <script>
+            var c = document.getElementById("canvas101");
+            var ctx = c.getContext("2d");
+        
+            var plantX = 400;  // Ubicación inicial de la planta
+            var plantY = 500;
+            var cloudX = 0;  // Ubicación inicial de la nube
+            var cloudY = 0;   // Ubicación de la nube
+            var rainDrops = []; // Array para las gotas de lluvia
+        
+            // Cargar las imágenes
+            var plantImg = new Image();
+            var cloudImg = new Image();
+            var rainImg = new Image();
+        
+            plantImg.src = './plant.png'; // Ruta de la imagen de la planta
+            cloudImg.src = './cloud.png'; // Ruta de la imagen de la nube
+            rainImg.src = './rain.png'; // Ruta de la imagen de la gota de lluvia
+        
+            // Dibujar la planta
+            function drawPlant(angle) {
+                ctx.clearRect(0, 0, c.width, c.height); // Limpiar el canvas
+        
+                // Dibujar la nube
+                drawCloud(cloudX, cloudY);
+        
+                // Dibujar la planta
+                ctx.save(); // Guardar el estado actual del canvas
+                ctx.translate(plantX, plantY - 50); // Trasladar a la base de la planta
+                ctx.rotate(angle); // Rotar según el ángulo calculado
+        
+                // Dibujar la imagen de la planta
+                ctx.drawImage(plantImg, -plantImg.width / 2, -plantImg.height);
+        
+                ctx.restore(); // Restaurar el estado del canvas
+        
+                // Dibujar las gotas de lluvia
+                drawRain();
+            }
+        
+            // Dibujar la nube
+            function drawCloud(x, y) {
+                ctx.drawImage(cloudImg, x - cloudImg.width / 2, y - cloudImg.height / 2); // Ajustar la imagen de la nube
+            }
+        
+            // Generar gotas de lluvia
+            function drawRain() {
+                for (var i = 0; i < rainDrops.length; i++) {
+                    var drop = rainDrops[i];
+                    ctx.drawImage(rainImg, drop.x, drop.y, 10, 10); // Dibujar la gota de lluvia
+                    drop.y += 4; // Hacer que la gota caiga
+        
+                    // Si la gota llega al fondo, se reinicia en la parte superior
+                    if (drop.y > c.height) {
+                        drop.y = 0;
+                        drop.x = Math.random() * c.width; // Generar una nueva posición horizontal
+                    }
+                }
+            }
+        
+            // Mover la nube y la planta hacia el mouse
+            c.addEventListener("mousemove", function(event) {
+                var mouseX = event.clientX - c.offsetLeft;
+                var mouseY = event.clientY - c.offsetTop;
+        
+                // La planta sigue el mouse
+                var dx = mouseX - plantX;
+                var dy = mouseY - (plantY - 50); // Ajuste en la posición de la planta
+                var angle = Math.atan2(dy, dx);
+                drawPlant(angle);
+        
+                // La nube sigue el mouse
+                cloudX = mouseX;
+                cloudY = mouseY - 50; // Mantener la nube un poco por encima del mouse
+            });
+        
+            // Cuando se hace clic, añadir gotas de lluvia
+            c.addEventListener("click", function(event) {
+                for (var i = 0; i < 10; i++) { // Agregar 10 gotas a la vez
+                    rainDrops.push({
+                        x: Math.random() * c.width, // Posición aleatoria
+                        y: 0 // Inicia desde la parte superior
+                    });
+                }
+            });
+        
+            // Asegurarse de que las imágenes estén cargadas antes de dibujar
+            plantImg.onload = function() {
+                cloudImg.onload = function() {
+                    rainImg.onload = function() {
+                        // Dibujar la escena inicial
+                        drawPlant(0);
+                    };
+                    rainImg.src = './rain.png'; // Asegurar la carga de la imagen de la lluvia
+                };
+                cloudImg.src = './cloud.png'; // Asegurar la carga de la imagen de la nube
+            };
+        </script>
+    </body>
+</html>
