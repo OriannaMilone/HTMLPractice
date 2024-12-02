@@ -3,6 +3,10 @@ const express = require("express");
 const app = express(); // app is an instance of express
 const port = 3000;
 const logger = require('morgan'); //import the logging library
+const fs = require('fs'); //import the file system library
+
+app.set('view engine', 'ejs'); // This sets the view engine to ejs
+app.set('views', './views'); 
 
 // This checks the environment of the application and sets the logging format accordingly 
 // process.env.NODE_ENV 
