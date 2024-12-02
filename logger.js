@@ -19,3 +19,33 @@
 
 // module.exports = logger;
 
+
+
+//THIS IS SUPPOSE TO BE IN THE APP.JS
+
+// This checks the environment of the application and sets the logging format accordingly 
+// process.env.NODE_ENV 
+// if (app.get('env') == 'production') {
+//     app.use(logger('common', {
+//         skip: function (req, res) { return res.statusCode < 400 },
+//         stream: __dirname + '/../morgan.log'
+//     }));
+// } else {
+//     app.use(logger('dev'));
+// }
+
+//if we were using winston: 
+// const logger = require('./utils/logger'); // Asegúrate de poner la ruta correcta
+// const app = express();
+
+// // Ejemplo de uso del logger
+// app.get('/', (req, res) => {
+//   logger.info('Solicitud GET a la ruta principal');
+//   res.send('Hello World!');
+// });
+
+// app.listen(3000, () => {
+//   logger.info('Servidor corriendo en http://localhost:3000');
+// });
+
+
